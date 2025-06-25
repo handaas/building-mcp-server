@@ -75,7 +75,7 @@ python server/mcp_server.py streamable-http
 ```json
 {
   "mcpServers": {
-    "store-mcp-server": {
+    "building-mcp-server": {
       "command": "uv",
       "args": ["run", "mcp", "run", "{workdir}/server/mcp_server.py"],
       "env": {
@@ -97,7 +97,7 @@ python server/mcp_server.py streamable-http
 ```json
 {
   "mcpServers": {
-    "store-mcp-server":{
+    "building-mcp-server":{
       "type": "streamableHttp",
       "url": "https://mcp.handaas.com/building/building_bigdata?token={token}"  
       }
