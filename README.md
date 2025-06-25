@@ -99,7 +99,7 @@ python server/mcp_server.py streamable-http
   "mcpServers": {
     "store-mcp-server":{
       "type": "streamableHttp",
-      "url": "https://mcp.handaas.com/store/store_bigdata?token={token}"  
+      "url": "https://mcp.handaas.com/building/building_bigdata?token={token}"  
       }
   }
 }
