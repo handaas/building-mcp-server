@@ -60,12 +60,12 @@ def call_api(product_id: str, params: dict) -> dict:
     url = f'https://console.handaas.com/api/v1/integrator/call_api/{INTEGRATOR_ID}'
     try:
         response = requests.post(url, data=call_params)
-        return response.json().get("data", "查询为空")
+        return response.json().get("data", None) or response.json().get("msgCN", None)
     except Exception as e:
         return "查询失败"
     
 @mcp.tool()
-def building_bigdata_fuzzy_search(matchKeyword: str, pageIndex: int = None, pageSize: int = None) -> dict:
+def building_bigdata_fuzzy_search(matchKeyword: str, pageIndex: int = 1, pageSize: int = None) -> dict:
     """
     该接口的功能是根据提供的企业名称、人名、品牌、产品、岗位等关键词模糊查询相关企业列表。返回匹配的企业列表及其详细信息，用于查找和识别特定的企业信息。
 
@@ -122,7 +122,7 @@ def building_bigdata_fuzzy_search(matchKeyword: str, pageIndex: int = None, page
 
 
 @mcp.tool()
-def building_bigdata_office_address_details(matchKeyword: str, address: str = None, pageIndex: int = None, keywordType: str = None,
+def building_bigdata_office_address_details(matchKeyword: str, address: str = None, pageIndex: int = 1, keywordType: str = None,
                            pageSize: int = None) -> dict:
     """
     该接口功能及用途是根据特定的企业标识信息，查询和返回企业的办公地址相关数据，包括办公地址总数、每个城市的办公地址详细信息等。该接口的主要使用场景包括企业内部管理系统用于了解办公地址布局、商业分析工具中用于市场地理分布分析，以及政府或合作机构进行企业信息核实或者决策辅助时快速获取企业在各地的实际运营地址信息。
@@ -189,7 +189,7 @@ def building_bigdata_office_address_stats(matchKeyword: str, keywordType: str = 
 
 
 @mcp.tool()
-def building_bigdata_building_query(matchKeyword: str = None, pageIndex: int = None, address: str = None, pageSize: int = None,
+def building_bigdata_building_query(matchKeyword: str = None, pageIndex: int = 1, address: str = None, pageSize: int = 10,
                    estatePropertyType: str = None) -> dict:
     """
     支持通过楼宇名称、楼宇类型等查询指定地区的全部楼盘信息，包括楼宇名称、楼宇别名、楼宇地址、楼宇类型、楼宇入驻企业数量等
