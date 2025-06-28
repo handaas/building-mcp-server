@@ -203,12 +203,12 @@ python server/mcp_server.py streamable-http
 ### building_bigdata_fuzzy_search (企业关键词模糊搜索)
 1. 帮我查找包含"腾讯"关键词的企业信息
 2. 搜索与"阿里"相关的企业列表
-3. 查询名称中包含"字节跳动"的公司
+3. 查询名称中包含"抖音"的公司
 
 ### building_bigdata_office_address_details (企业办公地址详情查询)
 1. 查询腾讯科技有限公司的办公地址详情
 2. 阿里巴巴集团在北京有哪些办公地点？
-3. 字节跳动在上海的办公地址信息
+3. 抖音在上海的办公地址信息
 
 ### building_bigdata_office_address_stats (企业办公地址统计分析)
 1. 统计腾讯在全国各个城市的办公地址分布
