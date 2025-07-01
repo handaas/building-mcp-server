@@ -122,7 +122,6 @@ python server/mcp_server.py streamable-http
 
 **返回值**:
 - `total`: 总数
-- `resultList`: 结果列表
 - 其他企业相关信息
 
 ### 2. building_bigdata_office_address_details
@@ -174,7 +173,6 @@ python server/mcp_server.py streamable-http
 
 **返回值**:
 - `total`: 总数
-- `resultList`: 结果列表
   - `estateName`: 楼宇名称
   - `estateId`: 楼宇id
   - `estateAliasName`: 楼宇别名

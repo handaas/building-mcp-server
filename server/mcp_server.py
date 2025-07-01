@@ -77,7 +77,6 @@ def building_bigdata_fuzzy_search(matchKeyword: str, pageIndex: int = 1, pageSiz
 
     返回参数:
     - total: 总数 类型：int
-    - resultList: 结果列表 类型：list of dict
     - annualTurnover: 年营业额 类型：string
     - formerNames: 曾用名 类型：list of string
     - address: 注册地址 类型：string
@@ -143,7 +142,6 @@ def building_bigdata_office_address_details(matchKeyword: str, address: str = No
     - total: 总数 类型：int
     - officeSourceType: 地址来源 类型：string
     - officeSettleType: 入驻方式 类型：string - 工商注册入驻，办公地址入驻
-    - resultList: 列表结果 类型：list of dict
     - estateName: 所在楼宇 类型：string
     - estateId: 楼宇id 类型：string
     """
@@ -213,7 +211,6 @@ def building_bigdata_building_query(matchKeyword: str = None, pageIndex: int = 1
     - estateAddress: 楼宇地址 类型：dict
     - estatePropertyType: 楼宇类型 类型：string - 写字楼，产业园，综合体，公寓酒店，展会中心
     - estateEnterpriseCount: 楼宇入驻企业数量 类型：int
-    - resultList: 结果列表 类型：list of dict
     """
     # 构建请求参数
     params = {
