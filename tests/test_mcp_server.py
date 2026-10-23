@@ -285,8 +285,8 @@ class ApiContractTests(unittest.TestCase):
 
 class LegacyToolContractTests(unittest.TestCase):
     CASES: tuple[tuple[str, dict[str, Any], str, dict[str, Any]], ...] = (
-        ("building_bigdata_fuzzy_search", {"matchKeyword": "company"}, "675cea1f0e009a9ea37edaa1", {"matchKeyword": "company", "pageIndex": 1}),
-        ("building_bigdata_office_address_details", {"matchKeyword": "company"}, "6786528b1677add9f934358f", {"matchKeyword": "company", "pageIndex": 1}),
+        ("building_bigdata_fuzzy_search", {"matchKeyword": "company"}, "675cea1f0e009a9ea37edaa1", {"matchKeyword": "company", "pageIndex": 1, "pageSize": 50}),
+        ("building_bigdata_office_address_details", {"matchKeyword": "company"}, "6786528b1677add9f934358f", {"matchKeyword": "company", "pageIndex": 1, "pageSize": 10}),
         ("building_bigdata_office_address_stats", {"matchKeyword": "company"}, "6786528b1677add9f934359d", {"matchKeyword": "company"}),
         ("building_bigdata_building_query", {}, "6786528b1677add9f93435db", {"pageIndex": 1, "pageSize": 10}),
     )
@@ -297,6 +297,24 @@ class LegacyToolContractTests(unittest.TestCase):
             with self.subTest(name=name), patch.object(server, "call_api", return_value=expected) as api:
                 self.assertIs(getattr(server, name)(**arguments), expected)
                 api.assert_called_once_with(product_id, params)
+
+    def test_existing_tools_forward_explicit_pagination(self):
+        for name, arguments, product_id, params in self.CASES:
+            if "pageSize" not in params:
+                continue
+            with self.subTest(name=name), patch.object(server, "call_api", return_value={}) as api:
+                getattr(server, name)(**{**arguments, "pageIndex": 3, "pageSize": 4})
+                api.assert_called_once_with(product_id, {**params, "pageIndex": 3, "pageSize": 4})
+
+    def test_pagination_schema_defaults_match_forwarded_requests(self):
+        tools = {tool.name: tool for tool in asyncio.run(server.mcp.list_tools())}
+        for name, _, _, params in self.CASES:
+            if "pageSize" not in params:
+                continue
+            with self.subTest(name=name):
+                properties = tools[name].inputSchema["properties"]
+                self.assertEqual(properties["pageIndex"]["default"], params["pageIndex"])
+                self.assertEqual(properties["pageSize"]["default"], params["pageSize"])
 
     def test_existing_error_text_is_not_normalized(self):
         for name, arguments, _, _ in self.CASES:

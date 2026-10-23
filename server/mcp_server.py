@@ -10,14 +10,14 @@ import sys
 
 load_dotenv()
 
-mcp = FastMCP("楼宇大数据", instructions="楼宇大数据", dependencies=["python-dotenv", "requests"])
+mcp = FastMCP("楼宇资产信息", instructions="楼宇资产信息", dependencies=["python-dotenv", "requests"])
 
 INTEGRATOR_ID = os.environ.get("INTEGRATOR_ID")
 SECRET_ID = os.environ.get("SECRET_ID")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
-def call_api(product_id: str, params: dict) -> dict:
+def call_api(product_id: str, params: dict) -> Any:
     """
     调用API接口
 

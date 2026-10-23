@@ -1,4 +1,4 @@
-# 楼宇大数据服务
+# 楼宇资产信息
 
 [该MCP服务提供企业关键词模糊搜索、企业办公地址明细、办公地址城市分布、楼宇搜索以及指定楼宇的入驻企业、入驻类型统计、入驻分布统计、楼宇基础信息、电子围栏和年鉴查询等楼宇大数据查询功能。](https://www.handaas.com/)
 
@@ -125,6 +125,7 @@ python server/mcp_server.py streamable-http
 **参数**:
 - `matchKeyword` (必需): 匹配关键词 - 查询各类信息包含匹配关键词的企业
 - `pageIndex` (可选): 分页开始位置 - 默认从1开始
+- `pageSize` (可选): 每页数量 - 默认50条，最多50条
 
 **返回值**:
 - `total`: 总数
@@ -150,7 +151,7 @@ python server/mcp_server.py streamable-http
 - `matchKeyword` (必需): 企业名称/注册号/统一社会信用代码/企业ID
 - `address` (可选): 省市地区 - 不可多选，例如 `广东省,广州市`
 - `pageIndex` (可选): 页码 - 默认从1开始
-- `pageSize` (可选): 每页数量 - 最多10条
+- `pageSize` (可选): 每页数量 - 默认10条，最多10条
 - `keywordType` (可选): 主体类型 - 枚举值：`name`（企业名称）、`nameId`（企业ID）、`regNumber`（注册号）、`socialCreditCode`（统一社会信用代码）
 
 **返回值**:
